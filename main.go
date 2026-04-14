@@ -1,8 +1,10 @@
 package main
 
 import (
-	"fmt"
+	_ "fmt"
 	_ "go-e-commerce/config"
+	"log"
+
 	"github.com/gofiber/fiber/v3"
 )
 
@@ -10,31 +12,22 @@ func main() {
 
 	app := fiber.New()
 
-	myCourses := [3][2]string{
-		{"NodeJs", "Go"},
-		{"AWS", "GCP"},
-		{"CDK", "Piulumi"},
-	}
+	myWishList := make(map[string]string)
 
-	// slice
-	mySliceCourses := [][]string{
-		{"NodeJs", "Go", "python"},
-		{"AWS", "GCP"},
-		{"CDK", "Pulumi"},
-	}
+	myWishList["first"] = "MacPro"
+	myWishList["second"] = "900 Billion USD"
+	myWishList["third"] = "porche"
 
-	course := []string{
-		"IAC", "Cloud Formation",
-	}
-	mySliceCourses = append(mySliceCourses, []string{"react", "react-native"})
+	// delete(myWishList, "third")
 
-	
-	fmt.Println("My Courses: ", myCourses)
-	fmt.Println("\nMy Slice Courses: ", mySliceCourses)
-	fmt.Println("\nCourses : ", course)
+	firstWish := myWishList["first"]
+	log.Println(firstWish)
+	secondWish := myWishList["second"]
+	log.Println(secondWish)
+	thirdWish := myWishList["third"]
+	log.Println(thirdWish)
 
-	myBeCourses := make([]int,2,10)
-
+	// fmt.Println("My wish list: ", myWishList)
 
 	app.Listen("localhost:9000")
 }
