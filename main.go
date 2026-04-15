@@ -1,33 +1,40 @@
 package main
 
 import (
-	_ "fmt"
-	_ "go-e-commerce/config"
-	"log"
+	"fmt"
 
 	"github.com/gofiber/fiber/v3"
 )
 
-func main() {
+type Product struct{
+	Name string
+	Price float64
+	Stock int
+}
 
+func (p *Product) Calculate(qty  int) float64{
+	return p.Price * float64(qty)
+}
+
+func (p *Product) ReduceStock(qty int){
+	if (p.Stock >= qty) {
+		p.Stock-= qty
+	}
+}
+
+
+func main(){
 	app := fiber.New()
 
-	myWishList := make(map[string]string)
+	p := Product{
+		Name: "MacPro",
+		Price: 9000,
+		Stock: 5,
+	}
+	fmt.Printf( "total amount : %f", p.Calculate(1))
 
-	myWishList["first"] = "MacPro"
-	myWishList["second"] = "900 Billion USD"
-	myWishList["third"] = "porche"
+	p.ReduceStock(3)
+	fmt.Println(p)
 
-	// delete(myWishList, "third")
-
-	firstWish := myWishList["first"]
-	log.Println(firstWish)
-	secondWish := myWishList["second"]
-	log.Println(secondWish)
-	thirdWish := myWishList["third"]
-	log.Println(thirdWish)
-
-	// fmt.Println("My wish list: ", myWishList)
-
-	app.Listen("localhost:9000")
+	app.Listen("Localhost is active on port http://localhost:9000")
 }
