@@ -6,35 +6,28 @@ import (
 	"github.com/gofiber/fiber/v3"
 )
 
-type Product struct{
-	Name string
-	Price float64
-	Stock int
-}
 
-func (p *Product) Calculate(qty  int) float64{
-	return p.Price * float64(qty)
-}
+func main() {
 
-func (p *Product) ReduceStock(qty int){
-	if (p.Stock >= qty) {
-		p.Stock-= qty
-	}
-}
-
-
-func main(){
 	app := fiber.New()
 
-	p := Product{
-		Name: "MacPro",
-		Price: 9000,
-		Stock: 5,
-	}
-	fmt.Printf( "total amount : %f", p.Calculate(1))
 
-	p.ReduceStock(3)
-	fmt.Println(p)
+	// array-->
+	// var myFamily [3]string
+	// myFamily[0] = "Jay"
+	// myFamily[1] = "John"
+	// myFamily[2] = "Jacob"
+	// myFamily := [3]string{"Jay", "John", "Carol"}
+	// myFamily[2] = "kate"
+	// fmt.Printf("My family: %v", myFamily)
 
-	app.Listen("Localhost is active on port http://localhost:9000")
+	// slice-->
+	var myFriends []string
+	myFriends = append(myFriends, "Mike", "Adam")
+	fmt.Printf("My Frirends: %v", myFriends)
+
+
+
+	app.Listen("active on http://localhost:9000")
+
 }
